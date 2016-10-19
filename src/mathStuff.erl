@@ -9,7 +9,7 @@
 -module(mathStuff).
 -author("grubio").
 
-%%-import(math, [pi/0]). Not recommended
+%%-import(math, [pi/0]). Not recommended, less readable code
 
 -define(SQUARE, square).
 -define(CIRCLE, circle).
