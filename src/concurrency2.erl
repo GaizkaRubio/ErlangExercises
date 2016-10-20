@@ -12,27 +12,27 @@
 %% API
 -export([]).
 
-process(Pid) ->
-  receive
-    finished ->
-      io:format("a pastar~n", []);
-     msg ->
-      io:format("procesooooo~n", []),
-      Pid ! msg,
-      process(Pid)
-  end.
-
-process0(N, Pid) ->
-  receive
-    msg ->
-      io:format("proceso 0~n", []),
-      Pid ! msg,
-      case N of
-        0 -> Pid ! finished;
-        _ -> Pid ! msg, process(N-1,Pid)
-      end
-  end.
-
-start(N) ->
+%%process(Pid) ->
+%%  receive
+%%    finished ->
+%%      io:format("a pastar~n", []);
+%%     msg ->
+%%      io:format("procesooooo~n", []),
+%%      Pid ! msg,
+%%      process(Pid)
+%%  end.
+%%
+%%process0(N, Pid) ->
+%%  receive
+%%    msg ->
+%%      io:format("proceso 0~n", []),
+%%      Pid ! msg,
+%%      case N of
+%%        0 -> Pid ! finished;
+%%        _ -> Pid ! msg, process(N-1,Pid)
+%%      end
+%%  end.
+%%
+%%start(N) ->
 
 
