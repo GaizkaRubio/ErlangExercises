@@ -48,5 +48,7 @@ exercise8_test() ->
   ?assert(onetoTenExercises:compress([1,2,2,2,3,4,4,4,4,5,5]) =:= [1,2,3,4,5]).
 
 exercise9_test() ->
-  io:fwrite("~w", [onetoTenExercises:pack([1,2,2,2,3,4,4,4,4,5,5])]).
-%%  ?assert(onetoTenExercises:pack([1,2,2,2,3,4,4,4,4,5,5]) =:= [1,2,3,4,5]).
+  ?assert(onetoTenExercises:pack([1,2,2,2,3,4,4,4,4,5,5]) =:= [[1],[2,2,2],[3],[4,4,4,4],[5,5]]).
+
+exercise10_test() ->
+  ?assert(onetoTenExercises:encode([[1],[2,2,2],[3],[4,4,4,4],[5,5]]) =:= [{1,1},{2,3},{3,1},{4,4},{5,2}]).

@@ -10,7 +10,7 @@
 -author("grubio").
 
 %% API
--export([myLast/1, myButLast/1, elementAt/2, myLength/1, myReverse/1, myFlatten/1, compress/1, pack/1]).
+-export([myLast/1, myButLast/1, elementAt/2, myLength/1, myReverse/1, myFlatten/1, compress/1, pack/1, encode/1]).
 -export([isPalindrome/1, isPalindrome2/1]).
 
 %%Problem 1 - Find the last element of a list.
@@ -61,12 +61,15 @@ myFlatten(L,[]) -> L.
 compress([H|T]) -> compress([H],[H|T]).
 compress([NH|NT],[H|T]) when NH =/= H-> compress([H] ++ [NH|NT],T);
 compress([NH|NT],[H|T]) when NH =:= H-> compress([NH|NT],T);
-compress(N, []) -> lists:reverse(N).
+compress(N, []) -> myReverse(N).
 
 %%Problem 9 -  Pack consecutive duplicates of list elements into sublists.
 pack([H|T]) -> pack([[H]],T).
-pack([NH|NT],[H|T]) when NH =/= H -> pack([H] ++ [NH|NT],T);
-pack([NH|NT],[H|T]) when NH =:= H -> pack([NH ++ H|NT],T);
-pack(N, []) -> lists:reverse(N).
+pack([[NNH|NNT]|NT],[H|T]) when NNH == H -> pack([[H]++[NNH|NNT]|NT],T);
+pack([[NNH|NNT]|NT],[H|T]) when NNH /= H -> pack([[H]]++[[NNH|NNT]|NT],T);
+pack(N, []) -> myReverse(N).
 
 %%Problem 10 -   Run-length encoding of a list. Use the result of problem P09 to implement the so-called run-length encoding data compression method.
+encode(L) ->encode([],L).
+encode(NL, [H|T]) -> encode(NL ++ [{myLast(H),length(H)}],T);
+encode(NL, []) -> NL.
